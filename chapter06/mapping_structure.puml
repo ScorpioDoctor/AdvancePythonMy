@@ -1,0 +1,43 @@
+@startuml
+abstract class Iterable {
+    __iter__(self)
+}
+abstract class Sized {
+    __len__(self)
+}
+abstract class Container {
+    __contains__(self,value)
+}
+
+abstract class Collection
+abstract class Mapping
+
+Sized <|-- Collection
+Iterable <|-- Collection
+Container <|-- Collection
+
+Collection <|-- Mapping
+
+Mapping <|-- MutableMapping
+
+class Mapping {
+    abstract __getitem__(self, key)
+    get(self, key, default=None)
+    __contains__(self, key)
+    keys(self)
+    values(self)
+    items(self)
+    __eq__(self, other)
+}
+
+class MutableMapping {
+    abstract __setitem__(self, index, value)
+    abstract __delitem__(self, index)
+    popitem(self)
+    pop(self, key, default=__marker)
+    clear(self)
+    update(*args, **kwds)
+    setdefault(self, key, default=None)
+}
+
+@enduml

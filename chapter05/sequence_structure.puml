@@ -1,0 +1,50 @@
+@startuml
+abstract class Iterable {
+    __iter__(self)
+}
+abstract class Sized {
+    __len__(self)
+}
+abstract class Container {
+    __contains__(self,value)
+}
+
+abstract class Reversible {
+    __reversed__(self)
+}
+abstract class Collection
+abstract class Sequence
+
+Iterable <|-- Reversible
+
+Sized <|-- Collection
+Iterable <|-- Collection
+Container <|-- Collection
+
+Reversible <|-- Sequence
+Collection <|-- Sequence
+
+Sequence <|-- MutableSequence
+
+class Sequence {
+    abstract __getitem__(self, index)
+    __iter__(self)
+    __contains__(self, value)
+    __reversed__(self)
+    index(self, value, ...)
+    count(self, value)
+}
+
+class MutableSequence {
+    abstract __setitem__(self, index, value)
+    abstract __delitem__(self, index)
+    abstract insert(self, index, value)
+    append(self, value)
+    clear(self)
+    reverse(self)
+    extend(self, values)
+    pop(self, index=-1)
+    remove(self, value)
+}
+
+@enduml
